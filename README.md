@@ -13,7 +13,7 @@
 - **Backend**: Modern .NET (C#), Node.js, TypeScript, Hono, Temporal, NATS JetStream, PostgreSQL, ClickHouse, Redis/Dragonfly, distributed locking, Socket.IO, Drizzle ORM
 - **DevOps / Platform**: Kubernetes (+ Talos Linux), GitOps (FluxCD / ArgoCD), IaC (Pulumi / Terraform / cdktf / Terragrunt), Cloudflare (edge/CDN/WAF), Google Cloud, GitHub Actions, Prometheus/Grafana, VictoriaMetrics/VictoriaLogs/Prom++, Vector, External Secrets / Infisical, CloudnativePG, automated cloud backups, multi-cloud provisioning
 
-## Selected projects
+## Public projects
 - **Gift Fight** — Telegram Web App / iGaming-style real-time game  
   https://github.com/gift-fight/gift-fight  
   - Provably-fair mechanics (seed + HMAC approach), TON integration for deposits/withdrawals
