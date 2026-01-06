@@ -11,14 +11,14 @@
 ## Technical stack
 - **Frontend**: TypeScript, React, Vite, SSR (Next.js / Vike / Custom Implementations), Effector, Telegram Web Apps, WebSockets/real-time subscriptions and data lifetime management
 - **Backend**: Modern .NET (C#), Node.js, TypeScript, Hono, Temporal, NATS JetStream, PostgreSQL, ClickHouse, Redis/Dragonfly, distributed locking, Socket.IO, Drizzle ORM
-- **DevOps / Platform**: Kubernetes (+ Talos Linux), GitOps (FluxCD / ArgoCD), IaC (Pulumi / Terraform / cdktf / Terragrunt), Cloudflare (edge/CDN/WAF), Google Cloud, GitHub Actions, Prometheus/Grafana, VictoriaMetrics/VictoriaLogs/Prom++, Vector, External Secrets / Infisical, CloudnativePG, automated cloud backups, multi-cloud provisioning
+- **DevOps / Platform**: Kubernetes (+ Talos Linux), GitOps (FluxCD / ArgoCD), IaC (Pulumi / Terraform / cdktf / Terragrunt), Cloudflare (edge/CDN/WAF), Google Cloud, GitHub Actions, Prometheus/Grafana, VictoriaMetrics/VictoriaLogs/Prom++, CloudnativePG, automated cloud backups, multi-cloud provisioning
 
 ## Public projects
 - **Gift Fight** — Telegram Web App / iGaming-style real-time game  
   https://github.com/gift-fight/gift-fight  
   - Provably-fair mechanics (seed + HMAC approach), TON integration for deposits/withdrawals
   - Infra-first approach: GitOps + IaC, multi-cloud, edge/CDN, cloud backups, external secrets
-  - Stack highlights: Postgres, caching with graceful degradation + distributed locks, eventing/streaming, workflow orchestration (Temporal), hybrid HTTP + real-time sockets communication
+  - Highlights: Postgres, Dragonfly caching with graceful degradation + distributed locks, eventing/streaming, workflow orchestration (Temporal), hybrid HTTP + real-time sockets communication, shared codebase/types between multiple backend services and frontend
 
 ## Open-source tooling I authored
 - **nestjs-zod** — Zod validation integration for NestJS (now maintained by another owner)  
