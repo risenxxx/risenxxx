@@ -11,12 +11,17 @@
 ---
 
 ## 🚀 Engineering Philosophy
+
 I focus on **End-to-End System Design**: merging performant UIs with scalable infrastructure. My approach involves "shifting left" with strong typing, automated workflows (GitOps), and comprehensive observability.
 
 * 🔭 **Current Focus:** Web3, Applied Cryptography, High-frequency event processing.
 * 🏗 **Architecture Style:** Event-driven, Kubernetes-first, IaC-managed.
 
 ## 🛠 Tech Stack & Arsenal
+
+I prefer a **pragmatic, problem-first approach**. I select tools based on specific constraints and architectural fit, adopting new technologies when they offer a superior solution.
+
+The table below highlights my **core, production-proven stack** that I use most frequently:
 
 | Domain | Key Technologies |
 | :--- | :--- |
@@ -38,7 +43,7 @@ This isn't just a bot; it's a high-performance real-time gaming platform.
   - **Talos Linux + K8s** running on hybrid bare-metal/cloud environment deployed with Pulumi.
   - **GitOps** driven delivery (FluxCD) with External Secrets integration (Infisical).
   - **Edge Caching:** Cloudflare + Dragonfly for low-latency data access.
-- **Architecture:** Hybrid HTTP + WebSockets (Socket.IO) orchestrated by **Temporal** workflows for game rounds.
+- **Architecture:** Hybrid HTTP + WebSockets (Socket.IO) orchestrated by Temporal workflows for game rounds.
 
 [🔗 View Repository](https://github.com/gift-fight/gift-fight)
 
