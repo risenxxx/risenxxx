@@ -45,7 +45,7 @@ This isn't just a bot; it's a high-performance real-time gaming platform.
   - **Edge Caching:** Cloudflare + Dragonfly for low-latency data access.
 - **Architecture:** Hybrid HTTP + WebSockets (Socket.IO) orchestrated by Temporal workflows for game rounds.
 
-[🔗 View Repository](https://github.com/gift-fight/gift-fight)
+[🔗 Codebase](https://github.com/gift-fight/gift-fight) • [🔗 Infrastructure](https://github.com/gift-fight/gift-fight-infra)
 
 ---
 
