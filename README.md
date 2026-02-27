@@ -64,6 +64,15 @@ Created the standard integration layer between NestJS and Zod.
 
 A simplified, preset-based ESLint configuration generator to reduce DX fatigue across different frontend/backend stacks.
 
+### **[LangLock](https://github.com/risenxxx/LangLock)** (Author)
+![Stars](https://img.shields.io/github/stars/risenxxx/LangLock?style=social) ![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
+
+Native Windows utility that remaps Caps Lock to switch keyboard language without keystroke emulation.
+- Uses `WM_INPUTLANGCHANGEREQUEST` instead of `SendInput` — minimizes anti-cheat detection risk.
+- Low-level hook (`WH_KEYBOARD_LL`) with `LLKHF_INJECTED` filtering.
+- Task Scheduler integration for elevated startup (works with admin apps/games).
+- Single ~200KB executable, zero runtime dependencies.
+
 ---
 
 <div align="center">
