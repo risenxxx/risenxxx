@@ -5,6 +5,8 @@
     <b>8+ years</b> building distributed systems, developer tooling, and real-time UIs.
     <br/>
     <i>Frontend → Backend → Platform/DevOps</i>
+    <br/>
+    <sub>I design the pipeline, then direct AI agents to implement it - building production-grade products in very different domains.</sub>
   </p>
 </div>
 
@@ -16,6 +18,12 @@ I focus on **End-to-End System Design**: merging performant UIs with scalable in
 
 * 🔭 **Current Focus:** Web3, Applied Cryptography, High-frequency event processing.
 * 🏗 **Architecture Style:** Event-driven, Kubernetes-first, IaC-managed.
+
+## 🤖 AI-Agent Orchestration
+
+AI agents are a big part of how I work. What helps here is the combination of two skills: I can design the full pipeline of a task from problem to production - architecture, data, CI, runtime, rollback - and I have built real systems in very different fields: heavy web platforms, Kubernetes infrastructure, native Windows and macOS utilities, audio DSP, game modding. When the same person designs the pipeline *and* understands each domain in depth, AI agents become a real help instead of a risk.
+
+I don't just give tasks to agents and trust the result. I write the requirements, the constraints, and the validation test cases in advance, and then I check what the agent produces against them. A feature isn't considered done until all important edge cases are covered, the security check passes, and the performance requirements are met. I don't lower these requirements just because the agent works fast. The **Selected Work** below is the evidence.
 
 ## 🛠 Tech Stack & Arsenal
 
@@ -32,20 +40,80 @@ The table below highlights my **core, production-proven stack** that I use most 
 
 ---
 
-## 🏆 Featured Project: Gift Fight
-> *Telegram iGaming Web App with Provably Fair mechanics and Cloud-Native Infrastructure.*
+## 🏆 Selected Work
 
-This isn't just a bot; it's a high-performance real-time gaming platform.
+Production-grade projects in four very different domains - this variety is intentional. Each one has a permissive license, full documentation, and real users.
 
-**Key Technical Highlights:**
-- **Provably Fair Core:** Custom seed + HMAC implementation ensuring transparent RNG verification.
-- **High-Performance Infrastructure:**
-  - **Talos Linux + K8s** running on hybrid bare-metal/cloud environment deployed with Pulumi.
-  - **GitOps** driven delivery (FluxCD) with External Secrets integration (Infisical).
-  - **Edge Caching:** Cloudflare + Dragonfly for low-latency data access.
-- **Architecture:** Hybrid HTTP + WebSockets (Socket.IO) orchestrated by Temporal workflows for game rounds.
+### Web & Cloud-Native Platforms
 
-[🔗 Codebase](https://github.com/gift-fight/gift-fight) • [🔗 Infrastructure](https://github.com/gift-fight/gift-fight-infra)
+#### Gift Fight - Telegram iGaming Web App
+*Provably-fair real-time gaming platform on a hybrid bare-metal/cloud Kubernetes substrate.*
+
+![Talos](https://img.shields.io/badge/Talos_Linux-FF6F00?style=flat-square&logo=linux&logoColor=white) ![K8s](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white) ![Pulumi](https://img.shields.io/badge/Pulumi-8A3391?style=flat-square&logo=pulumi&logoColor=white) ![FluxCD](https://img.shields.io/badge/Flux-330099?style=flat-square&logo=flux&logoColor=white) ![Temporal](https://img.shields.io/badge/Temporal-1f2023?style=flat-square&logo=temporal&logoColor=white) ![Socket.IO](https://img.shields.io/badge/Socket.IO-010101?style=flat-square&logo=socketdotio&logoColor=white)
+
+- **Provably-fair core:** custom seed + HMAC RNG with public verification.
+- **Infra:** Talos Linux + K8s on hybrid bare-metal/cloud, deployed via Pulumi; FluxCD GitOps with External Secrets (Infisical); Cloudflare + DragonflyDB edge caching.
+- **Runtime:** Hybrid HTTP + WebSockets (Socket.IO) orchestrated by Temporal workflows for game rounds.
+
+[Codebase](https://github.com/gift-fight/gift-fight) • [Infrastructure](https://github.com/gift-fight/gift-fight-infra)
+
+---
+
+### Native Desktop Utilities
+
+#### DeskVolt - Wireless Peripheral Battery Widget for Windows
+*Lightweight system-tray widget that talks directly to wireless gaming peripherals over HID - no vendor bloatware (G HUB, SteelSeries GG, iCUE) required.*
+
+![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white) ![Windows](https://img.shields.io/badge/Windows_10/11-0078D6?style=flat-square&logo=windows&logoColor=white) ![Direct2D](https://img.shields.io/badge/Direct2D-512BD4?style=flat-square&logo=windows&logoColor=white) ![HID](https://img.shields.io/badge/HID_Protocol-444444?style=flat-square&logo=usb&logoColor=white)
+
+- **Six device protocol drivers** built from reverse-engineered specs: Logitech HID++ 2.0, SteelSeries, Corsair, HyperX, PlayStation DualSense.
+- **Native Win32 rendering** via `windows-rs` (Direct2D / DirectWrite) - LTO-optimized, <10 MB resident.
+- **Trait-based device abstraction:** adding a new peripheral is one driver module.
+
+[Repository](https://github.com/risenxxx/DeskVolt)
+
+---
+
+#### LangLock - Caps Lock → Keyboard Language Switcher for Windows
+*Background utility that intercepts Caps Lock to switch the input language without ever emulating a keystroke.*
+
+![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white) ![Windows](https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=windows&logoColor=white) ![Win32](https://img.shields.io/badge/Win32_API-512BD4?style=flat-square&logo=windows&logoColor=white)
+
+- **`WM_INPUTLANGCHANGEREQUEST`, not `SendInput`** - uses the same internal mechanism Windows itself fires on `Alt+Shift`; no virtual keystrokes are ever generated, minimizing anti-cheat detection risk.
+- **Low-level `WH_KEYBOARD_LL` hook** with `LLKHF_INJECTED` filtering; Task Scheduler integration for elevated startup so it cooperates with admin apps and games.
+- **Single ~200 KB portable executable**, zero runtime dependencies. Tray icon, single-instance IPC, optional `Shift+Caps` fallback for actual Caps Lock.
+
+[Repository](https://github.com/risenxxx/LangLock)
+
+---
+
+### Audio & Signal Processing
+
+#### dubsync - Localized Dub Track Synchronizer
+*Cross-platform Rust tool that aligns localized audio from a lower-quality donor release onto a high-quality master video using FFT cross-correlation.*
+
+![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white) ![egui](https://img.shields.io/badge/egui-000000?style=flat-square&logo=rust&logoColor=white) ![FFmpeg](https://img.shields.io/badge/FFmpeg-007808?style=flat-square&logo=ffmpeg&logoColor=white) ![DSP](https://img.shields.io/badge/FFT_/_GCC--PHAT-444444?style=flat-square)
+
+- **GCC-PHAT correlation** with peak-to-sidelobe confidence scoring (`rustfft`, `rayon` for parallelism).
+- **Adaptive two-pass boundary refinement** to ~50 ms precision; silence-aware splicing; Rubber Band time-stretch; FPS normalization; subtitle time-shifting.
+- **Three frontends, one core:** `eframe`/`egui` GUI, `clap` CLI, and headless mode for pipelines. Win/macOS/Linux.
+
+[Repository](https://github.com/risenxxx/dubsync)
+
+---
+
+### Game Modding
+
+#### perfect-graves - Minecraft Forge Gravestone & Death-Recovery Mod
+*Polished, claims-aware death-recovery system for Forge 1.20.1 - preserves inventory structure, respects land-claim mods, zero data loss.*
+
+![Java](https://img.shields.io/badge/Java_17-ED8B00?style=flat-square&logo=openjdk&logoColor=white) ![Forge](https://img.shields.io/badge/Forge_1.20.1-1E2D2F?style=flat-square&logo=minecraft&logoColor=white) ![Modrinth](https://img.shields.io/badge/Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white) ![CurseForge](https://img.shields.io/badge/CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white)
+
+- **Structure-preserving recovery:** armor returns to armor slots, auto-equip on retrieval, 10-minute loot protection, return markers up to 256 blocks.
+- **Provider-pattern integrations** for Curios, FTB Chunks, Open Parties & Claims, Flan - all optional, all degrade cleanly when absent.
+- **Zero-data-loss virtual-vault fallback** for edge cases (void, claim conflicts, full inventories). Event-priority discipline throughout. CI/CD via GitHub Actions to Modrinth + CurseForge.
+
+[Repository](https://github.com/risenxxx/perfect-graves)
 
 ---
 
@@ -64,17 +132,8 @@ Created the standard integration layer between NestJS and Zod.
 
 A simplified, preset-based ESLint configuration generator to reduce DX fatigue across different frontend/backend stacks.
 
-### **[LangLock](https://github.com/risenxxx/LangLock)** (Author)
-![Stars](https://img.shields.io/github/stars/risenxxx/LangLock?style=social) ![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
-
-Native Windows utility that remaps Caps Lock to switch keyboard language without keystroke emulation.
-- Uses `WM_INPUTLANGCHANGEREQUEST` instead of `SendInput` — minimizes anti-cheat detection risk.
-- Low-level hook (`WH_KEYBOARD_LL`) with `LLKHF_INJECTED` filtering.
-- Task Scheduler integration for elevated startup (works with admin apps/games).
-- Single ~200KB executable, zero runtime dependencies.
-
 ---
 
 <div align="center">
-  <a href="https://t.me/risenx">PM me on Telegram</a> • <a href="mailto:to@risen.dev">Email Me</a>
+  <a href="https://www.linkedin.com/in/risenx">Connect on LinkedIn</a> • <a href="https://t.me/risenx">PM me on Telegram</a> • <a href="mailto:to@risen.dev">Email Me</a>
 </div>
