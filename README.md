@@ -8,6 +8,9 @@
     <br/>
     <sub>I design the pipeline, then direct AI agents to implement it - building production-grade products in very different domains.</sub>
   </p>
+  <p>
+    <a href="https://www.linkedin.com/in/risenx">Connect on LinkedIn</a> • <a href="https://t.me/risenx">PM me on Telegram</a> • <a href="mailto:to@risen.dev">Email Me</a>
+  </p>
 </div>
 
 ---
