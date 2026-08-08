@@ -17,7 +17,7 @@
 
 ## 🚀 Engineering Philosophy
 
-I focus on **End-to-End System Design**: merging performant UIs with scalable infrastructure. My approach involves "shifting left" with strong typing, automated workflows (GitOps), and comprehensive observability.
+I build the whole path rather than a slice of it: the interface a user touches, the services behind it, and the infrastructure they run on. In practice that means catching problems as early as possible - types that make a broken state impossible to express, deployments that are a reviewed commit rather than a manual step, and enough metrics to know something is wrong before a user reports it.
 
 * 🔭 **Current Focus:** Web3, Applied Cryptography, High-frequency event processing.
 * 🏗 **Architecture Style:** Event-driven, Kubernetes-first, IaC-managed.
@@ -55,14 +55,12 @@ Production-grade projects in five very different domains - this variety is inten
 
 ![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white) ![Tauri](https://img.shields.io/badge/Tauri_2-24C8DB?style=flat-square&logo=tauri&logoColor=white) ![Svelte](https://img.shields.io/badge/Svelte_5-FF3E00?style=flat-square&logo=svelte&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white) ![libmpv](https://img.shields.io/badge/libmpv-691F63?style=flat-square) ![FFmpeg](https://img.shields.io/badge/FFmpeg-007808?style=flat-square&logo=ffmpeg&logoColor=white) ![Windows](https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=windows&logoColor=white) ![macOS](https://img.shields.io/badge/macOS-000000?style=flat-square&logo=apple&logoColor=white)
 
-**I genuinely believe this is the best video player on earth by UI/UX and by the feature set you actually get** - and the list below is why.
+**I genuinely believe this is the best video player on earth by UI/UX and by the feature set you actually get.**
 
-- **A real interface, not an OSC script:** mpv renders into a native child view *behind* a transparent webview, with the entire UI composited on top as HTML. Same decoding as mpv/IINA - hardware acceleration (D3D11VA / VideoToolbox), 10-bit, HDR10/HLG/HDR10+ and Dolby Vision via `vo=gpu-next` - with none of the usual UI compromises. On macOS this required **patching libmpv itself** (mpv's macOS backend has no `--wid` support at all); the patch is published alongside the app.
-- **Torrent streaming that works while it downloads:** a magnet link becomes a playable queue served from a loopback HTTP server - piece priority follows the playhead, the seekbar shades what has already arrived, embedded subtitles attach themselves, the next episode is prefetched. Seeding is off at compile time, not by a rate limit.
-- **Cast & DLNA that don't repack when they don't have to:** both transports are discovered and merged per device, and the row tells you what will happen to *this* file on *that* device. A DLNA renderer that accepts a 4K HEVC HDR MKV with Dolby audio gets it untouched; where a copy is needed the video is stream-copied so it's ready in seconds. Torrents can be cast mid-download, and the window becomes the remote.
-- **Details measured, not assumed:** seekbar previews sharpen to the *exact* frame the cursor stopped on (naive keyframe mapping showed the wrong scene 60% of the time); exact-seek cost is probed once per file instead of trading away precision everywhere; subtitles are matched by file hash rather than by guessing the rip; the audio/subtitle track you picked is re-found in the next episode by language, title and codec - never by track index.
-- **Everything else you'd want:** frame stepping both ways, chapter skip for intros/recaps/credits, A-B loop, resume-anywhere start screen, a mini player that floats over other apps' fullscreen spaces on macOS, zoom & pan, HDR-correct frame export, live media-info panel, layout-independent rebindable hotkeys, RU/EN localisation, and history exclusions that also erase what was already recorded.
-- **Shipped like a product:** signed auto-updates that reopen the current video at the same position, CI-built Windows and macOS artifacts published to R2 + GitHub Releases on every version bump, and design notes in `docs/` recording the measurements, the alternatives tried and the dead ends worth not repeating.
+- **Send it to the TV in full quality, and keep the remote:** as far as I know the only desktop player - outside full media servers with their own native TV apps - that casts a 4K HEVC HDR file with Dolby audio to a television *as it is*: no re-encode, no quality loss, no stutter, while the app window stays a working remote (seek, chapters, skip-intro, next episode). Google Cast and DLNA, chosen per device *and* per file; a copy is prepared only when the set truly can't take the original, and even then the video is stream-copied.
+- **Torrents play while they download:** a magnet link becomes a queue you can start in seconds - piece priority follows the playhead, the seekbar shades what has already arrived, embedded subtitles attach themselves, the next episode is prefetched. Castable mid-download; seeding off at compile time.
+- **A real interface, not an OSC script:** mpv renders into a native child view *behind* a transparent webview, the whole UI composited on top as HTML - mpv-grade decoding (hardware acceleration, HDR10+/Dolby Vision) with none of the usual UI compromises. On macOS this meant **patching libmpv itself**, since its backend has no `--wid` support at all.
+- **Details measured, not assumed:** previews sharpen to the *exact* frame under the cursor (naive keyframe mapping showed the wrong scene 60% of the time), exact-seek cost is probed per file, subtitles are matched by file hash rather than by guessing the rip, and your audio/subtitle choice is re-found in the next episode by language and codec - never by track index. Plus everything else: frame stepping, resume-anywhere, mini player, HDR-correct frame export, layout-independent rebindable hotkeys, RU/EN, and signed auto-updates built by CI for both platforms.
 
 [Repository](https://github.com/risenxxx/frame-player) • [Download](https://github.com/risenxxx/frame-player/releases/latest)
 
@@ -71,13 +69,13 @@ Production-grade projects in five very different domains - this variety is inten
 ### Web & Cloud-Native Platforms
 
 #### Gift Fight - Telegram iGaming Web App
-*Provably-fair real-time gaming platform on a hybrid bare-metal/cloud Kubernetes substrate.*
+*A real-time gambling platform where every round can be proven fair - running on a Kubernetes cluster I built and operate myself, across bare metal and cloud.*
 
 ![Talos](https://img.shields.io/badge/Talos_Linux-FF6F00?style=flat-square&logo=linux&logoColor=white) ![K8s](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white) ![Pulumi](https://img.shields.io/badge/Pulumi-8A3391?style=flat-square&logo=pulumi&logoColor=white) ![FluxCD](https://img.shields.io/badge/Flux-330099?style=flat-square&logo=flux&logoColor=white) ![Temporal](https://img.shields.io/badge/Temporal-1f2023?style=flat-square&logo=temporal&logoColor=white) ![Socket.IO](https://img.shields.io/badge/Socket.IO-010101?style=flat-square&logo=socketdotio&logoColor=white)
 
-- **Provably-fair core:** custom seed + HMAC RNG with public verification.
-- **Infra:** Talos Linux + K8s on hybrid bare-metal/cloud, deployed via Pulumi; FluxCD GitOps with External Secrets (Infisical); Cloudflare + DragonflyDB edge caching.
-- **Runtime:** Hybrid HTTP + WebSockets (Socket.IO) orchestrated by Temporal workflows for game rounds.
+- **Provably fair, not "trust us":** a custom HMAC-based RNG over a server seed committed before the round and a client seed the player controls. The commitment is published up front and the seed revealed after, so anyone can recompute the outcome and confirm the house didn't touch it.
+- **Rounds survive a deploy:** a game in progress lives in a Temporal workflow rather than in a server's memory, so a restart or a release doesn't drop it. Live play runs over WebSockets (Socket.IO) alongside ordinary HTTP.
+- **Infrastructure as code, end to end:** Talos Linux + Kubernetes spanning bare metal and cloud, described in Pulumi, with every change applied by GitOps (FluxCD) instead of by hand - and secrets that never live in the repo (External Secrets / Infisical). Cloudflare + DragonflyDB in front for edge caching.
 
 [Codebase](https://github.com/gift-fight/gift-fight) • [Infrastructure](https://github.com/gift-fight/gift-fight-infra)
 
@@ -90,9 +88,9 @@ Production-grade projects in five very different domains - this variety is inten
 
 ![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white) ![Windows](https://img.shields.io/badge/Windows_10/11-0078D6?style=flat-square&logo=windows&logoColor=white) ![Direct2D](https://img.shields.io/badge/Direct2D-512BD4?style=flat-square&logo=windows&logoColor=white) ![HID](https://img.shields.io/badge/HID_Protocol-444444?style=flat-square&logo=usb&logoColor=white)
 
-- **Six device protocol drivers** built from reverse-engineered specs: Logitech HID++ 2.0, SteelSeries, Corsair, HyperX, PlayStation DualSense.
-- **Native Win32 rendering** via `windows-rs` (Direct2D / DirectWrite) - LTO-optimized, <10 MB resident.
-- **Trait-based device abstraction:** adding a new peripheral is one driver module.
+- **Six vendors, none of whom document this:** Logitech HID++ 2.0, SteelSeries, Corsair, HyperX and PlayStation DualSense are each queried directly over USB HID, from protocols reverse-engineered rather than published.
+- **Stays out of the way:** native Win32 rendering via `windows-rs` (Direct2D / DirectWrite), LTO-optimized, under 10 MB resident.
+- **Adding a device is one file:** every peripheral sits behind the same trait, so a new one is a single driver module.
 
 [Repository](https://github.com/risenxxx/DeskVolt)
 
@@ -101,13 +99,13 @@ Production-grade projects in five very different domains - this variety is inten
 ### Audio & Signal Processing
 
 #### dubsync - Localized Dub Track Synchronizer
-*Cross-platform Rust tool that aligns localized audio from a lower-quality donor release onto a high-quality master video using FFT cross-correlation.*
+*Takes the dub you want from a low-quality release and puts it onto the good video, lined up automatically.*
 
 ![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white) ![egui](https://img.shields.io/badge/egui-000000?style=flat-square&logo=rust&logoColor=white) ![FFmpeg](https://img.shields.io/badge/FFmpeg-007808?style=flat-square&logo=ffmpeg&logoColor=white) ![DSP](https://img.shields.io/badge/FFT_/_GCC--PHAT-444444?style=flat-square)
 
-- **GCC-PHAT correlation** with peak-to-sidelobe confidence scoring (`rustfft`, `rayon` for parallelism).
-- **Adaptive two-pass boundary refinement** to ~50 ms precision; silence-aware splicing; Rubber Band time-stretch; FPS normalization; subtitle time-shifting.
-- **Three frontends, one core:** `eframe`/`egui` GUI, `clap` CLI, and headless mode for pipelines. Win/macOS/Linux.
+- **The problem:** the 4K release ships only the original audio, and the dub you want exists only in an old rip that is cut and timed differently. dubsync finds the offset between them by itself and produces one file with both.
+- **And it knows when it isn't sure:** the two soundtracks are correlated to find the alignment, and every result carries a confidence score - so a bad match is reported rather than silently shipped (GCC-PHAT with peak-to-sidelobe scoring, parallelised).
+- **The awkward cases are handled:** differently-cut releases are aligned segment by segment to ~50 ms, frame rates normalised, audio time-stretched instead of clipped, subtitles shifted to match. GUI, CLI and headless modes on Windows/macOS/Linux.
 
 [Repository](https://github.com/risenxxx/dubsync)
 
@@ -121,8 +119,8 @@ Production-grade projects in five very different domains - this variety is inten
 ![Java](https://img.shields.io/badge/Java_17-ED8B00?style=flat-square&logo=openjdk&logoColor=white) ![Forge](https://img.shields.io/badge/Forge_1.20.1-1E2D2F?style=flat-square&logo=minecraft&logoColor=white) ![Modrinth](https://img.shields.io/badge/Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white) ![CurseForge](https://img.shields.io/badge/CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white)
 
 - **Structure-preserving recovery:** armor returns to armor slots, auto-equip on retrieval, 10-minute loot protection, return markers up to 256 blocks.
-- **Provider-pattern integrations** for Curios, FTB Chunks, Open Parties & Claims, Flan - all optional, all degrade cleanly when absent.
-- **Zero-data-loss virtual-vault fallback** for edge cases (void, claim conflicts, full inventories). Event-priority discipline throughout. CI/CD via GitHub Actions to Modrinth + CurseForge.
+- **Plays nicely with other mods:** Curios, FTB Chunks, Open Parties & Claims and Flan are each supported when present and cleanly ignored when they aren't - no hard dependencies.
+- **Your stuff cannot be lost** - not in the void, not inside someone else's claim, not with a full inventory. Anything a grave can't hold goes into a virtual vault instead. Released to Modrinth and CurseForge by CI.
 
 [Repository](https://github.com/risenxxx/perfect-graves)
 
@@ -133,15 +131,15 @@ Production-grade projects in five very different domains - this variety is inten
 ### **[nestjs-zod](https://github.com/BenLorantfy/nestjs-zod)** (Original Author)
 ![Stars](https://img.shields.io/github/stars/BenLorantfy/nestjs-zod?style=social)
 
-Created the standard integration layer between NestJS and Zod.
-- Solved the DTO redundancy problem in NestJS.
-- ~150K downloads/month ecosystem wide usage.
+The standard way to use Zod with NestJS - **~150K downloads/month** across the ecosystem.
+- Removed the need to describe the same data twice: one schema now serves validation, types and the generated API docs.
 - *Status: Transferred to another maintainer (I stopped using NestJS)*
 
 ### **[eslint-kit](https://github.com/eslint-kit/eslint-kit)** (Author)
 ![Stars](https://img.shields.io/github/stars/eslint-kit/eslint-kit?style=social)
 
-A simplified, preset-based ESLint configuration generator to reduce DX fatigue across different frontend/backend stacks.
+Preset-based ESLint configuration: one short config instead of the usual sprawl of plugins, parsers and rules - across different frontend and backend stacks.
+- *Status: largely obsolete today - Biome does in one fast binary what this worked around. It was the right answer while ESLint was the only game in town and every stack meant assembling a zoo of configs and plugins that integrated badly with each other.*
 
 ---
 
