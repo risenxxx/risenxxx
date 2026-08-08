@@ -24,7 +24,7 @@ I focus on **End-to-End System Design**: merging performant UIs with scalable in
 
 ## 🤖 AI-Agent Orchestration
 
-AI agents are a big part of how I work. What helps here is the combination of two skills: I can design the full pipeline of a task from problem to production - architecture, data, CI, runtime, rollback - and I have built real systems in very different fields: heavy web platforms, Kubernetes infrastructure, native Windows and macOS utilities, audio DSP, game modding. When the same person designs the pipeline *and* understands each domain in depth, AI agents become a real help instead of a risk.
+AI agents are a big part of how I work. What helps here is the combination of two skills: I can design the full pipeline of a task from problem to production - architecture, data, CI, runtime, rollback - and I have built real systems in very different fields: heavy web platforms, Kubernetes infrastructure, native Windows and macOS desktop apps, media playback and audio DSP, game modding. When the same person designs the pipeline *and* understands each domain in depth, AI agents become a real help instead of a risk.
 
 I don't just give tasks to agents and trust the result. I write the requirements, the constraints, and the validation test cases in advance, and then I check what the agent produces against them. A feature isn't considered done until all important edge cases are covered, the security check passes, and the performance requirements are met. I don't lower these requirements just because the agent works fast. The **Selected Work** below is the evidence.
 
@@ -45,7 +45,28 @@ The table below highlights my **core, production-proven stack** that I use most 
 
 ## 🏆 Selected Work
 
-Production-grade projects in four very different domains - this variety is intentional. Each one has a permissive license, full documentation, and real users.
+Production-grade projects in five very different domains - this variety is intentional. Each one has a permissive license, full documentation, and real users.
+
+### Desktop Applications
+
+#### Frame Player - Video Player for Windows & macOS
+
+*Local files, links and live torrent streaming in one window - Tauri 2 + libmpv, frame-accurate, with an unusual amount of attention to detail.*
+
+![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white) ![Tauri](https://img.shields.io/badge/Tauri_2-24C8DB?style=flat-square&logo=tauri&logoColor=white) ![Svelte](https://img.shields.io/badge/Svelte_5-FF3E00?style=flat-square&logo=svelte&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white) ![libmpv](https://img.shields.io/badge/libmpv-691F63?style=flat-square) ![FFmpeg](https://img.shields.io/badge/FFmpeg-007808?style=flat-square&logo=ffmpeg&logoColor=white) ![Windows](https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=windows&logoColor=white) ![macOS](https://img.shields.io/badge/macOS-000000?style=flat-square&logo=apple&logoColor=white)
+
+**I genuinely believe this is the best video player on earth by UI/UX and by the feature set you actually get** - and the list below is why.
+
+- **A real interface, not an OSC script:** mpv renders into a native child view *behind* a transparent webview, with the entire UI composited on top as HTML. Same decoding as mpv/IINA - hardware acceleration (D3D11VA / VideoToolbox), 10-bit, HDR10/HLG/HDR10+ and Dolby Vision via `vo=gpu-next` - with none of the usual UI compromises. On macOS this required **patching libmpv itself** (mpv's macOS backend has no `--wid` support at all); the patch is published alongside the app.
+- **Torrent streaming that works while it downloads:** a magnet link becomes a playable queue served from a loopback HTTP server - piece priority follows the playhead, the seekbar shades what has already arrived, embedded subtitles attach themselves, the next episode is prefetched. Seeding is off at compile time, not by a rate limit.
+- **Cast & DLNA that don't repack when they don't have to:** both transports are discovered and merged per device, and the row tells you what will happen to *this* file on *that* device. A DLNA renderer that accepts a 4K HEVC HDR MKV with Dolby audio gets it untouched; where a copy is needed the video is stream-copied so it's ready in seconds. Torrents can be cast mid-download, and the window becomes the remote.
+- **Details measured, not assumed:** seekbar previews sharpen to the *exact* frame the cursor stopped on (naive keyframe mapping showed the wrong scene 60% of the time); exact-seek cost is probed once per file instead of trading away precision everywhere; subtitles are matched by file hash rather than by guessing the rip; the audio/subtitle track you picked is re-found in the next episode by language, title and codec - never by track index.
+- **Everything else you'd want:** frame stepping both ways, chapter skip for intros/recaps/credits, A-B loop, resume-anywhere start screen, a mini player that floats over other apps' fullscreen spaces on macOS, zoom & pan, HDR-correct frame export, live media-info panel, layout-independent rebindable hotkeys, RU/EN localisation, and history exclusions that also erase what was already recorded.
+- **Shipped like a product:** signed auto-updates that reopen the current video at the same position, CI-built Windows and macOS artifacts published to R2 + GitHub Releases on every version bump, and design notes in `docs/` recording the measurements, the alternatives tried and the dead ends worth not repeating.
+
+[Repository](https://github.com/risenxxx/frame-player) • [Download](https://github.com/risenxxx/frame-player/releases/latest)
+
+---
 
 ### Web & Cloud-Native Platforms
 
@@ -74,19 +95,6 @@ Production-grade projects in four very different domains - this variety is inten
 - **Trait-based device abstraction:** adding a new peripheral is one driver module.
 
 [Repository](https://github.com/risenxxx/DeskVolt)
-
----
-
-#### LangLock - Caps Lock → Keyboard Language Switcher for Windows
-*Background utility that intercepts Caps Lock to switch the input language without ever emulating a keystroke.*
-
-![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white) ![Windows](https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=windows&logoColor=white) ![Win32](https://img.shields.io/badge/Win32_API-512BD4?style=flat-square&logo=windows&logoColor=white)
-
-- **`WM_INPUTLANGCHANGEREQUEST`, not `SendInput`** - uses the same internal mechanism Windows itself fires on `Alt+Shift`; no virtual keystrokes are ever generated, minimizing anti-cheat detection risk.
-- **Low-level `WH_KEYBOARD_LL` hook** with `LLKHF_INJECTED` filtering; Task Scheduler integration for elevated startup so it cooperates with admin apps and games.
-- **Single ~200 KB portable executable**, zero runtime dependencies. Tray icon, single-instance IPC, optional `Shift+Caps` fallback for actual Caps Lock.
-
-[Repository](https://github.com/risenxxx/LangLock)
 
 ---
 
