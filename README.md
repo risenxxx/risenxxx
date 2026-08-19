@@ -1,6 +1,6 @@
 <div align="center">
   <h1>Hi, I'm Risen 👋</h1>
-  <h3>System Architect / Platform Engineer / Full-stack Developer</h3>
+  <h3>Senior Full-Stack Engineer / System Architect / Platform Engineer</h3>
   <p>
     <b>8+ years</b> building distributed systems, developer tooling, and real-time UIs.
     <br/>
@@ -11,6 +11,9 @@
   <p>
     <a href="https://www.linkedin.com/in/risenx">Connect on LinkedIn</a> • <a href="https://t.me/risenx">PM me on Telegram</a> • <a href="mailto:to@risen.dev">Email Me</a>
   </p>
+  <p>
+    <sub><b>Open to Senior Full-Stack / Backend / Platform roles</b> - remote (contractor or EOR), or hybrid in Yerevan</sub>
+  </p>
 </div>
 
 ---
@@ -19,7 +22,8 @@
 
 I build the whole path rather than a slice of it: the interface a user touches, the services behind it, and the infrastructure they run on. In practice that means catching problems as early as possible - types that make a broken state impossible to express, deployments that are a reviewed commit rather than a manual step, and enough metrics to know something is wrong before a user reports it.
 
-* 🔭 **Current Focus:** Web3, Applied Cryptography, High-frequency event processing.
+* 💼 **Day job:** Senior Software Engineer at X5 (food.ru, ~7.5M MAU) - previously SberEducation, Haiku Dev.
+* 🔭 **Current Focus:** Applied cryptography, high-frequency event processing, Web3.
 * 🏗 **Architecture Style:** Event-driven, Kubernetes-first, IaC-managed.
 
 ## 🤖 AI-Agent Orchestration
@@ -58,9 +62,9 @@ Production-grade projects in five very different domains - this variety is inten
 **I genuinely believe this is the best video player on earth by UI/UX and by the feature set you actually get.**
 
 - **Send it to the TV in full quality, and keep the remote:** as far as I know the only desktop player - outside full media servers with their own native TV apps - that casts a 4K HEVC HDR file with Dolby audio to a television *as it is*: no re-encode, no quality loss, no stutter, while the app window stays a working remote (seek, chapters, skip-intro, next episode). Google Cast and DLNA, chosen per device *and* per file; a copy is prepared only when the set truly can't take the original, and even then the video is stream-copied.
-- **Torrents play while they download:** a magnet link becomes a queue you can start in seconds - piece priority follows the playhead, the seekbar shades what has already arrived, embedded subtitles attach themselves, the next episode is prefetched. Castable mid-download; seeding off at compile time.
+- **Torrents play while they download:** a magnet link becomes a queue you can start in seconds, with a built-in catalog to find something to watch - piece priority follows the playhead, the seekbar shades what has already arrived, embedded subtitles attach themselves, the next episode is prefetched. Castable mid-download; seeding off at compile time.
 - **A real interface, not an OSC script:** mpv renders into a native child view *behind* a transparent webview, the whole UI composited on top as HTML - mpv-grade decoding (hardware acceleration, HDR10+/Dolby Vision) with none of the usual UI compromises. On macOS this meant **patching libmpv itself**, since its backend has no `--wid` support at all.
-- **Details measured, not assumed:** previews sharpen to the *exact* frame under the cursor (naive keyframe mapping showed the wrong scene 60% of the time), exact-seek cost is probed per file, subtitles are matched by file hash rather than by guessing the rip, and your audio/subtitle choice is re-found in the next episode by language and codec - never by track index. Plus everything else: frame stepping, resume-anywhere, mini player, HDR-correct frame export, layout-independent rebindable hotkeys, RU/EN, and signed auto-updates built by CI for both platforms.
+- **Details measured, not assumed:** previews sharpen to the *exact* frame under the cursor (naive keyframe mapping showed the wrong scene 60% of the time), exact-seek cost is probed per file, subtitles are matched by file hash rather than by guessing the rip, and your audio/subtitle choice is re-found in the next episode by language and codec - never by track index. Plus everything else: watching together in sync, frame stepping, resume-anywhere, mini player, HDR-correct frame export, layout-independent rebindable hotkeys, RU/EN, and signed auto-updates built by CI for both platforms.
 
 [Repository](https://github.com/risenxxx/frame-player) • [Download](https://github.com/risenxxx/frame-player/releases/latest)
 
@@ -129,9 +133,9 @@ Production-grade projects in five very different domains - this variety is inten
 ## 📦 Open Source Contributions
 
 ### **[nestjs-zod](https://github.com/BenLorantfy/nestjs-zod)** (Original Author)
-![Stars](https://img.shields.io/github/stars/BenLorantfy/nestjs-zod?style=social)
+![Stars](https://img.shields.io/github/stars/BenLorantfy/nestjs-zod?style=social) ![npm downloads](https://img.shields.io/npm/dm/nestjs-zod?style=flat-square&label=downloads%2Fmonth&color=CB3837)
 
-The standard way to use Zod with NestJS - **~150K downloads/month** across the ecosystem.
+The standard way to use Zod with NestJS - **~5.5M downloads/month** across the ecosystem.
 - Removed the need to describe the same data twice: one schema now serves validation, types and the generated API docs.
 - *Status: Transferred to another maintainer (I stopped using NestJS)*
 
