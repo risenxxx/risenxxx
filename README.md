@@ -108,8 +108,8 @@ Production-grade projects in five very different domains - this variety is inten
 ![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white) ![egui](https://img.shields.io/badge/egui-000000?style=flat-square&logo=rust&logoColor=white) ![FFmpeg](https://img.shields.io/badge/FFmpeg-007808?style=flat-square&logo=ffmpeg&logoColor=white) ![DSP](https://img.shields.io/badge/FFT_/_GCC--PHAT-444444?style=flat-square)
 
 - **The problem:** the 4K release ships only the original audio, and the dub you want exists only in an old rip that is cut and timed differently. dubsync finds the offset between them by itself and produces one file with both.
-- **And it knows when it isn't sure:** the two soundtracks are correlated to find the alignment, and every result carries a confidence score - so a bad match is reported rather than silently shipped (GCC-PHAT with peak-to-sidelobe scoring, parallelised).
-- **The awkward cases are handled:** differently-cut releases are aligned segment by segment to ~50 ms, frame rates normalised, audio time-stretched instead of clipped, subtitles shifted to match. GUI, CLI and headless modes on Windows/macOS/Linux.
+- **And it knows when it isn't sure:** the two soundtracks are correlated to find the alignment, and every result carries a confidence score - so a bad match is reported rather than silently shipped (GCC-PHAT with peak-to-sidelobe scoring, parallelized).
+- **The awkward cases are handled:** differently-cut releases are aligned segment by segment to ~50 ms, frame rates normalized, audio time-stretched instead of clipped, subtitles shifted to match. GUI, CLI and headless modes on Windows/macOS/Linux.
 
 [Repository](https://github.com/risenxxx/dubsync)
 
